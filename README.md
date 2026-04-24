@@ -1,21 +1,56 @@
-# OTT Finder
+# 🎬 OTT Finder - Full Stack Movie Search App
 
-A simple full-stack app to search movies and find which OTT platforms they are available on.
+A full-stack web application that allows users to search for movies and discover their OTT platform availability.
 
-## Tech Stack
-- Backend: Flask (Python)
-- Frontend: Streamlit
-- API: TMDb
+The project integrates external movie data APIs and provides a clean user interface for real-time search results.
 
-## Features
-- Search any movie
-- Shows OTT availability
-- Handles missing data
+---
 
-## How to run
+## 🚀 Live Demo
+- Backend API: https://ott-finder.onrender.com
+
+---
+
+## 🧠 Problem Statement
+
+Users often struggle to find where a movie is available across multiple OTT platforms.  
+This app solves that by providing centralized search results in real-time.
+
+---
+
+## 🏗️ Architecture
+
+Streamlit UI → Flask Backend → TMDb API → Response Processing → UI Display
+
+---
+
+## ⚙️ Tech Stack
 
 ### Backend
-python backend/app.py
+- Flask (Python)
+- REST API development
+- Requests library
 
 ### Frontend
-streamlit run frontend/ui.py
+- Streamlit (Python UI)
+
+### API Integration
+- TMDb API (Movie database)
+
+### Deployment
+- Render (Backend Hosting)
+
+---
+
+## ✨ Features
+
+- 🔍 Search any movie by name
+- 🎬 Fetch movie details from TMDb API
+- 📺 Display OTT availability (if found)
+- ⚡ Fast API response
+- ❌ Handles missing or unavailable data gracefully
+- 🌐 Deployed backend on cloud
+
+---
+
+## 📦 Project Structure

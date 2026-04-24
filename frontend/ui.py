@@ -1,39 +1,47 @@
 import streamlit as st
 import requests
 
-st.title("🎬 Movie OTT Finder")
+# Your deployed backend URL (Render)
+BASE_URL = "https://ott-finder.onrender.com"
 
+st.set_page_config(page_title="Movie OTT Finder", page_icon="🎬")
+
+st.title("🎬 Movie OTT Finder")
+st.write("Search any movie to find where it's available on OTT platforms")
+
+# Input box
 movie_name = st.text_input("Enter movie name")
 
-BASE_URL = "https://ott-finder.onrender.com" # change later after deploy
-
+# Button click
 if st.button("Search"):
-    if movie_name:
+
+    if not movie_name.strip():
+        st.warning("Please enter a movie name")
+    else:
         try:
-            response = requests.get(
-                f"{BASE_URL}/search",
-                params={"movie": movie_name}
-            )
+            with st.spinner("Searching movie..."):
+                response = requests.get(
+                    f"{BASE_URL}/search",
+                    params={"movie": movie_name}
+                )
 
-            data = response.json()
-
-            if "available_on" in data:
-                st.success(f"Movie: {data['movie']}")
-
-                if isinstance(data["available_on"], list):
-                    st.write("Available on:")
-                    for ott in data["available_on"]:
-                        st.write(f"- {ott}")
-                else:
-                    st.warning(data["available_on"])
-
-            elif "message" in data:
-                st.warning(data["message"])
-
+            if response.status_code != 200:
+                st.error("Backend error. Please try again.")
             else:
-                st.error("Something went wrong")
+                data = response.json()
+
+                # Movie found with OTT
+                if "available_on" in data and isinstance(data["available_on"], list):
+                    st.subheader(f"🎬 {data['movie']}")
+                    st.success("Available on:")
+
+                    for ott in data["available_on"]:
+                        st.write(f"🍿 {ott}")
+
+                # Movie not found / not available
+                else:
+                    msg = data.get("message", "Not available on OTT platforms")
+                    st.warning(msg)
 
         except Exception as e:
-            st.error(f"Error: {e}")
-    else:
-        st.warning("Please enter a movie name")
+            st.error(f"Something went wrong: {e}")
