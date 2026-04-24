@@ -5,7 +5,7 @@ st.title("🎬 Movie OTT Finder")
 
 movie_name = st.text_input("Enter movie name")
 
-BASE_URL = "http://127.0.0.1:5000"  # change later after deploy
+BASE_URL = "https://ott-finder.onrender.com" # change later after deploy
 
 if st.button("Search"):
     if movie_name:
