@@ -7,8 +7,8 @@ The project integrates external movie data APIs and provides a clean user interf
 ---
 
 ## 🚀 Live Demo
+- UI: https://your-streamlit-app.streamlit.app
 - Backend API: https://ott-finder.onrender.com
-
 ---
 
 ## 🧠 Problem Statement
